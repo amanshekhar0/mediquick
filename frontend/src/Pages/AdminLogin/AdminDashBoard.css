@@ -1,0 +1,134 @@
+.main-page {
+  background-color: #e3f7ff; /* Light blue background */
+  padding: 20px;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.header-admin {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(156, 205, 238);
+  height: 10vh;
+}
+.home-icon{
+  margin-right: 30%;
+ 
+}
+.navDet h2{
+  font-weight: 600;
+  margin-top: 5%;
+}
+.top-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.home-icon {
+  font-size: 2rem;
+  cursor: pointer;
+  color: #0077b6;
+}
+
+h1 {
+  color: #0077b6;
+}
+
+/* Card container grid layout */
+.cards-container {
+  padding-top: 5vmax;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin: 0 auto;
+}
+
+/* Individual card styling */
+.equipment-card {
+  background-color: #ffffff;
+  border: 1px solid #0077b6;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  padding: 15px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.equipment-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.card-content {
+  width: 100%;
+}
+
+.shortage-alert {
+  color: red;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #0077b6;
+  border-radius: 5px;
+}
+.add-equipment-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+button {
+  padding: 8px 15px;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #005f8c;
+}
+.add-eqp-btn {
+  height: 7vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+/* Add Equipment button */
+.add-equipment-button {
+  height: 3vmax;
+  width: 10vmax;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-equipment-button:hover {
+  background-color: #005f8c;
+}

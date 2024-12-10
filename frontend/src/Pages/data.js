@@ -1,0 +1,1 @@
+const location = [  "aces","ballia","biha"]

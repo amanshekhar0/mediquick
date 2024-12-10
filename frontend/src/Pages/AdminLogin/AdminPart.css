@@ -1,0 +1,213 @@
+
+
+
+/* Admin container */
+.admin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7; /* Light background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+.admin-signup-form-container {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 450px;
+}
+
+/* Signup title */
+.admin-signup-title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Form styles */
+.admin-signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.admin-form-field {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.admin-input:focus {
+  border-color: #5a9;
+}
+
+.admin-submit-btn {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #5a9;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.admin-submit-btn:hover {
+  background-color: #488;
+}
+
+.admin-error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+/* Optional additional style for small screens (e.g., mobile view) */
+@media (max-width: 768px) {
+  .admin-signup-form-container {
+    padding: 30px;
+  }
+
+  .admin-signup-title {
+    font-size: 1.5rem;
+  }
+
+  .admin-input {
+    padding: 10px;
+  }
+
+  .admin-submit-btn {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}
+/* AdminPart.css */
+.admin-login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+ background-color: #ebe7e7;
+  font-family: Arial, sans-serif;
+}
+
+.admin-login-header {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.admin-login-form {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+}
+
+.admin-form-group {
+  margin-bottom: 1.5rem;
+}
+
+.admin-label {
+  display: block;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.admin-input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.admin-input:focus {
+  border-color: #47eaff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(71, 234, 255, 0.5);
+}
+
+.admin-error-message {
+  color: #d9534f;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.admin-submit-btn {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #47eaff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.admin-submit-btn:hover {
+  background-color: #dbe3e4;
+}
+
+.admin-signup-link {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.admin-signup-link a {
+  color: #000000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.admin-signup-link a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .admin-login-header {
+    font-size: 2rem;
+  }
+
+  .admin-login-form {
+    padding: 1.5rem;
+  }
+
+  .admin-input,
+  .admin-submit-btn {
+    font-size: 0.9rem;
+  }
+
+  .admin-signup-link {
+    font-size: 0.8rem;
+  }
+}
