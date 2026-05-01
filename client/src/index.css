@@ -1,0 +1,152 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --canvas:    #F8FAFC;
+    --surface:   #FFFFFF;
+    --brand:     #0F766E;
+    --brand-50:  #F0FDFA;
+    --brand-100: #CCFBF1;
+    --critical:  #E11D48;
+    --warning:   #D97706;
+    --safe:      #059669;
+    --ink-900:   #0F172A;
+    --ink-600:   #475569;
+    --ink-400:   #94A3B8;
+    --ink-200:   #E2E8F0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-canvas text-ink-600 font-sans;
+    min-height: 100vh;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display text-ink-900;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-surface rounded-2xl shadow-soft;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 ease-out hover:shadow-soft-lg hover:-translate-y-0.5;
+  }
+
+  .label {
+    @apply text-xs font-medium uppercase tracking-wider text-ink-400;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:ring-offset-canvas disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white shadow-soft hover:bg-brand-800 hover:shadow-soft-lg;
+  }
+  .btn-secondary {
+    @apply btn bg-brand-50 text-brand hover:bg-brand-100;
+  }
+  .btn-ghost {
+    @apply btn text-ink-600 hover:bg-ink-100 hover:text-ink-900;
+  }
+  .btn-danger {
+    @apply btn bg-critical text-white hover:bg-critical-700;
+  }
+  .btn-outline {
+    @apply btn border border-ink-200 bg-surface text-ink-700 hover:border-ink-300 hover:text-ink-900;
+  }
+
+  /* Inputs */
+  .input {
+    @apply w-full rounded-lg border border-ink-200 bg-surface px-4 py-2.5 text-sm text-ink-900 placeholder-ink-400 transition-colors duration-200 focus:outline-none focus:border-brand focus:ring-2 focus:ring-brand/20 disabled:bg-ink-100;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+  .badge-critical { @apply bg-critical-100 text-critical-700; }
+  .badge-warning  { @apply bg-warning-50 text-warning; }
+  .badge-safe     { @apply bg-safe-50 text-safe; }
+  .badge-brand    { @apply bg-brand-50 text-brand; }
+  .badge-ink      { @apply bg-ink-100 text-ink-600; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* Leaflet — light theme */
+.leaflet-container {
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  background: #F1F5F9 !important;
+  font-family: 'Inter', sans-serif !important;
+  border-radius: inherit;
+}
+.leaflet-tile { filter: saturate(0.7) brightness(1.02); }
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.12) !important;
+}
+.leaflet-popup-content { font-family: 'Inter', sans-serif !important; }
+
+/* Recharts */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #E2E8F0 !important;
+}
+
+/* Range slider */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 999px;
+  background: #E2E8F0;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #0F766E;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+  transition: transform 0.15s ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+input[type="range"]::-moz-range-thumb {
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 2px solid #0F766E;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+}
+
+/* Hide scroll on landing page hero pattern */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
