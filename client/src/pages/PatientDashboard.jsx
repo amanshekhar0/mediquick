@@ -12,6 +12,7 @@ import BreathingIndicator from '../components/BreathingIndicator';
 import PageTransition from '../components/PageTransition';
 import { useAuth } from '../context/AuthContext';
 import { getSocket } from '../lib/socket';
+import { apiBaseURL } from '../lib/config';
 import api from '../lib/api';
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -126,7 +127,7 @@ export default function PatientDashboard() {
     setStreaming(true); setTokens(''); setTriageResult(null); setRecommendations([]); setPatientId(null); setAmbulance(null);
     const token = localStorage.getItem('token');
     try {
-      const response = await fetch('/api/triage', {
+      const response = await fetch(`${apiBaseURL}/triage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}`, Accept: 'text/event-stream' },
         body: JSON.stringify({ symptoms, patientLocation: userLocation }),

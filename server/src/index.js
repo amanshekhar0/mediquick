@@ -13,6 +13,9 @@ import alertRoutes from './routes/alerts.js';
 import seedRoutes from './routes/seed.js';
 
 const app = express();
+if (process.env.NODE_ENV === 'production') {
+  app.set('trust proxy', 1);
+}
 const server = http.createServer(app);
 
 const clientOrigins = (process.env.CLIENT_ORIGIN || 'http://localhost:5173')
@@ -51,11 +54,15 @@ app.get('/api/health', (_, res) => res.json({ status: 'ok', time: new Date().toI
 
 // Connect to MongoDB and start server
 const PORT = process.env.PORT || 5000;
+if (!process.env.MONGODB_URI?.trim()) {
+  console.error('[DB] MONGODB_URI is missing. Add it in Render → Environment (or your .env locally).');
+  process.exit(1);
+}
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('[DB] Connected to MongoDB');
-    server.listen(PORT, () => console.log(`[Server] MediEquip 2.0 running on port ${PORT}`));
+    server.listen(PORT, '0.0.0.0', () => console.log(`[Server] MediEquip 2.0 running on port ${PORT}`));
   })
   .catch((err) => {
     console.error('[DB] Connection failed:', err.message);

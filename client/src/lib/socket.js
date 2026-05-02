@@ -1,10 +1,11 @@
 import { io } from 'socket.io-client';
+import { getSocketOrigin } from './config';
 
 let socket;
 
 export const getSocket = () => {
   if (!socket) {
-    socket = io(window.location.origin, {
+    socket = io(getSocketOrigin(), {
       path: '/socket.io',
       transports: ['websocket', 'polling'],
     });

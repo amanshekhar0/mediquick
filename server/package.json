@@ -1,6 +1,9 @@
 {
   "name": "mediequip-server",
   "version": "2.0.0",
+  "engines": {
+    "node": ">=20"
+  },
   "description": "MediEquip 2.0 - AI-Powered Emergency Medical Intelligence Platform (Server)",
   "main": "src/index.js",
   "type": "module",
