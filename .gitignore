@@ -3,6 +3,7 @@ node_modules/
 .env.*
 !.env.example
 !**/.env.example
+!client/.env.production
 **/dist/
 *.log
 .DS_Store
