@@ -11,6 +11,7 @@ import triageRoutes from './routes/triage.js';
 import ambulanceRoutes from './routes/ambulance.js';
 import alertRoutes from './routes/alerts.js';
 import seedRoutes from './routes/seed.js';
+import { parseClientOriginsFromEnv, isAllowedOrigin } from './util/corsOrigins.js';
 
 const app = express();
 if (process.env.NODE_ENV === 'production') {
@@ -18,26 +19,21 @@ if (process.env.NODE_ENV === 'production') {
 }
 const server = http.createServer(app);
 
-const clientOrigins = (process.env.CLIENT_ORIGIN || 'http://localhost:5173')
-  .split(',')
-  .map((s) => s.trim())
-  .filter(Boolean);
+const clientOrigins = parseClientOriginsFromEnv();
 const isDev = process.env.NODE_ENV !== 'production';
-const allowCorsOrigin = (origin) => {
-  if (!origin) return true;
-  if (clientOrigins.includes(origin)) return true;
-  if (isDev && /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) return true;
-  return false;
-};
+const corsOpts = { isDev, allowedList: clientOrigins };
+const allowCorsOrigin = (origin) => isAllowedOrigin(origin, corsOpts);
 
 // Initialize Socket.io
-initSocket(server, { isDev, clientOrigins });
+initSocket(server, { isDev, corsOpts });
 
 // Middleware — in dev, any localhost Vite port (e.g. 5174) is allowed; set CLIENT_ORIGIN in production
 app.use(
   cors({
     origin: (origin, callback) => callback(null, allowCorsOrigin(origin)),
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
   })
 );
 app.use(express.json());

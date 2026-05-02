@@ -106,13 +106,17 @@ const Login = () => {
             </motion.div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" autoComplete="on">
             <div>
-              <label className="block text-sm font-semibold text-ink-700 mb-1.5">Email</label>
+              <label htmlFor="login-email" className="block text-sm font-semibold text-ink-700 mb-1.5">Email</label>
               <div className="relative">
-                <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" />
+                <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" aria-hidden />
                 <input
-                  type="email" required autoComplete="email"
+                  id="login-email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
                   value={form.email}
                   onChange={e => setForm({ ...form, email: e.target.value })}
                   placeholder="name@organization.org"
@@ -123,13 +127,17 @@ const Login = () => {
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-sm font-semibold text-ink-700">Password</label>
+                <label htmlFor="login-password" className="block text-sm font-semibold text-ink-700">Password</label>
                 <span className="text-xs text-ink-400">Contact IT to reset</span>
               </div>
               <div className="relative">
-                <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" />
+                <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" aria-hidden />
                 <input
-                  type="password" required autoComplete="current-password"
+                  id="login-password"
+                  name="password"
+                  type="password"
+                  required
+                  autoComplete="current-password"
                   value={form.password}
                   onChange={e => setForm({ ...form, password: e.target.value })}
                   placeholder="Enter password"

@@ -152,34 +152,63 @@ const Register = () => {
             </motion.div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" autoComplete="on">
             <div>
-              <label className="block text-sm font-semibold text-ink-700 mb-1.5">Full name</label>
+              <label htmlFor="register-name" className="block text-sm font-semibold text-ink-700 mb-1.5">Full name</label>
               <div className="relative">
-                <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" />
-                <input required value={form.name} onChange={e => setForm({ ...form, name: e.target.value })} placeholder="Legal name" className="input pl-10" />
+                <User size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" aria-hidden />
+                <input
+                  id="register-name"
+                  name="name"
+                  required
+                  autoComplete="name"
+                  value={form.name}
+                  onChange={e => setForm({ ...form, name: e.target.value })}
+                  placeholder="Legal name"
+                  className="input pl-10"
+                />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-ink-700 mb-1.5">Email</label>
+              <label htmlFor="register-email" className="block text-sm font-semibold text-ink-700 mb-1.5">Email</label>
               <div className="relative">
-                <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" />
-                <input type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} placeholder="name@organization.org" className="input pl-10" />
+                <Mail size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" aria-hidden />
+                <input
+                  id="register-email"
+                  name="email"
+                  type="email"
+                  required
+                  autoComplete="email"
+                  value={form.email}
+                  onChange={e => setForm({ ...form, email: e.target.value })}
+                  placeholder="name@organization.org"
+                  className="input pl-10"
+                />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-ink-700 mb-1.5">Password</label>
+              <label htmlFor="register-password" className="block text-sm font-semibold text-ink-700 mb-1.5">Password</label>
               <div className="relative">
-                <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" />
-                <input type="password" required value={form.password} onChange={e => setForm({ ...form, password: e.target.value })} placeholder="Strong password (min. 8 characters)" className="input pl-10" />
+                <Lock size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" aria-hidden />
+                <input
+                  id="register-password"
+                  name="password"
+                  type="password"
+                  required
+                  autoComplete="new-password"
+                  value={form.password}
+                  onChange={e => setForm({ ...form, password: e.target.value })}
+                  placeholder="Strong password (min. 8 characters)"
+                  className="input pl-10"
+                />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-ink-700 mb-2">Account type</label>
-              <div className="space-y-2">
+              <span id="register-role-legend" className="block text-sm font-semibold text-ink-700 mb-2">Account type</span>
+              <div className="space-y-2" role="radiogroup" aria-labelledby="register-role-legend">
                 {ROLES.map(r => (
                   <label
                     key={r.value}
@@ -190,6 +219,7 @@ const Register = () => {
                     }`}
                   >
                     <input
+                      id={`register-role-${r.value}`}
                       type="radio"
                       name="role"
                       value={r.value}
@@ -215,10 +245,12 @@ const Register = () => {
             {form.role === 'hospital_admin' && (
               <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} className="space-y-3">
                 <div>
-                  <label className="block text-sm font-semibold text-ink-700 mb-1.5">Your facility</label>
+                  <label htmlFor="register-hospital" className="block text-sm font-semibold text-ink-700 mb-1.5">Your facility</label>
                   <div className="relative">
-                    <Hospital size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400 z-10" />
+                    <Hospital size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400 z-10" aria-hidden />
                     <select
+                      id="register-hospital"
+                      name="hospitalId"
                       disabled={hospitalsLoading}
                       value={
                         hospitals.some((h) => String(h._id) === String(form.hospitalId))
@@ -243,8 +275,12 @@ const Register = () => {
                     <span className="group-open:rotate-90 transition-transform">▸</span> Paste facility ID instead
                   </summary>
                   <div className="relative mt-2">
-                    <Hospital size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" />
+                    <label htmlFor="register-hospital-paste" className="sr-only">Facility ID (paste)</label>
+                    <Hospital size={16} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-400" aria-hidden />
                     <input
+                      id="register-hospital-paste"
+                      name="hospitalIdPaste"
+                      autoComplete="off"
                       value={form.hospitalId}
                       onChange={(e) => setForm({ ...form, hospitalId: e.target.value })}
                       onBlur={(e) => setForm({ ...form, hospitalId: coerceHospitalIdPaste(e.target.value) })}

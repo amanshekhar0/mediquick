@@ -1,19 +1,25 @@
 import { Server } from 'socket.io';
+import { isAllowedOrigin, parseClientOriginsFromEnv } from '../util/corsOrigins.js';
 
 let io;
 
 export const initSocket = (httpServer, opts = {}) => {
-  const { isDev = process.env.NODE_ENV !== 'production', clientOrigins } = opts;
-  const list =
-    clientOrigins?.length > 0
-      ? clientOrigins
-      : (process.env.CLIENT_ORIGIN || 'http://localhost:5173')
-          .split(',')
-          .map((s) => s.trim())
-          .filter(Boolean);
+  const {
+    isDev = process.env.NODE_ENV !== 'production',
+    corsOpts: incomingCors,
+  } = opts;
+  const corsOpts =
+    incomingCors || {
+      isDev,
+      allowedList: parseClientOriginsFromEnv(),
+    };
+
   io = new Server(httpServer, {
     cors: {
-      origin: isDev ? true : list.length === 1 ? list[0] : list,
+      origin: (origin, callback) => {
+        if (isDev) return callback(null, true);
+        callback(null, isAllowedOrigin(origin, corsOpts));
+      },
       methods: ['GET', 'POST'],
       credentials: true,
     },
